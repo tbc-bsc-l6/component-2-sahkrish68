@@ -18,9 +18,9 @@
                <div class="bed_room">
                   <h3>{{ $room->room_title }}</h3>
                   <p>{{ \Illuminate\Support\Str::limit($room->description, 100, '...') }}</p>
-                  <p><strong>Price:</strong> ${{ $room->price }}</p>
-                  <p><strong>Type:</strong> {{ ucfirst($room->room_type) }}</p>
-                  <p><strong>Free Wifi:</strong> {{ ucfirst($room->wifi) }}</p>
+
+                  <a class="btn btn-primary" href="{{url('room_details',$room->id)}}"> Room Details</a>
+            
                </div>
             </div>
          </div>
