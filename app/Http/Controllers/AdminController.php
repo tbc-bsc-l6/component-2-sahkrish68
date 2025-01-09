@@ -18,7 +18,8 @@ class AdminController extends Controller
             $usertype = Auth()->user()->usertype;
             if($usertype=='user')
             {
-                return view('home.index');
+                $rooms = Room::all();
+               return view('home.index',compact('rooms'));  
             }
             else if($usertype=='admin')
             {
@@ -35,7 +36,8 @@ class AdminController extends Controller
     }
     public function home()
     {
-       return view('home.index');
+        $rooms = Room::all();
+       return view('home.index',compact('rooms'));
     }
     public function create_room()
     {
@@ -68,4 +70,66 @@ class AdminController extends Controller
         $data =Room ::all();
         return view('admin.view_room',compact('data'));
     }
+    public function room_delete($id)
+    {
+        $data = Room::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+    public function room_update($id)
+    {
+        $data = Room::find($id);
+        return view('admin.room_update',compact('data'));
+    }
+    public function update_room (Request $request,$id)
+    {
+        $data= Room::find($id);
+        if (!$data) 
+        {
+            return redirect()->back()->with('error', 'Room not found.');
+        }
+    
+        // Validate the request data
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'price' => 'required|numeric|min:0',
+            'type' => 'required|string|in:regular,premium,delux',
+            'wifi' => 'required|string|in:yes,no',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        // Update room data
+        $data->room_title = $request->input('title');
+        $data->description = $request->input('description');
+        $data->price = $request->input('price');
+        $data->room_type = $request->input('type');
+        $data->wifi = $request->input('wifi');
+    
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete the old image if exists
+            if ($data->image && file_exists(public_path('room/' . $data->image))) {
+                unlink(public_path('room/' . $data->image));
+            }
+    
+            // Upload new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('room'), $imageName);
+    
+            // Update image path in the database
+            $data->image = $imageName;
+        }
+    
+        // Save the updated room data
+        $data->save();
+    
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Room updated successfully.');
+    }
 }
+
+
+    
+
+
