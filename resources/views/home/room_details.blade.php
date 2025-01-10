@@ -57,6 +57,16 @@
               <div class="col-md-4">
             
                <h1 style="font-size: 40px">Book Your Room</h1>
+               @if($errors)
+
+               @foreach ($errors->all() as $errors)
+
+               <li>{{$errors}}</li>
+
+               @endforeach
+
+              @endif
+
                <form action="{{ url('add_booking/' . $room->id) }}" method="post">
                @csrf
 
