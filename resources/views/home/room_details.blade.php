@@ -61,7 +61,7 @@
 
                @foreach ($errors->all() as $errors)
 
-               <li>{{$errors}}</li>
+               <li style="color: red;">{{$errors}}</li>
 
                @endforeach
 
@@ -73,17 +73,29 @@
 
                <div>
                   <label>Name</label>
-                  <input type="text" name="name">
+                  <input type="text" name="name" 
+                  @if (Auth::id())
+                  value="{{Auth::user()->name}}">
+                  @endif
+                  
                </div>
 
                <div>
                   <label>Email</label>
-                  <input type="email" name="email">
+                  <input type="email" name="email" 
+                  
+                  @if (Auth::id())
+                  value="{{Auth::user()->email}}">
+                  @endif
                </div>
 
                <div>
                   <label>Phone No</label>
-                  <input type="number" name="phone">
+                  <input type="number" name="phone"
+                  @if (Auth::id())
+                  value="{{Auth::user()->phone}}">
+                  @endif
+                  
                </div>
 
                <div>
