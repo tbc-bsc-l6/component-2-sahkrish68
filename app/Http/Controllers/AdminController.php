@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallary;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -155,6 +157,24 @@ class AdminController extends Controller
         $booking->save();
 
         return redirect()->back()->with('success', 'Booking status updated successfully.');
+    }
+    public function gallary()
+    {
+        return view('admin.gallary');
+    }
+    public function upload_gallary(Request $request)
+    {
+        $data = new Gallary;
+        $image = $request->image;
+        if($image)
+        {
+            $imagename=time().'.'.$image->getClientOriginalExtension();
+            $request ->image->move('\gallary',$imagename);
+            $data->image=$imagename;
+            $data->save();
+            return redirect()->back();
+        }
+
     }
 }
 

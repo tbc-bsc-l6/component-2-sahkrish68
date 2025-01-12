@@ -32,9 +32,13 @@ Route::get('/bookings',[AdminController::class,'bookings']);
 
 Route::get('/delete_booking/{id}',[AdminController::class,'delete_booking']);
 
-
-// Route to update booking status
 Route::post('/update_booking_status/{id}', [AdminController::class, 'updateStatus'])->name('update_booking_status');
 
-// Route to delete booking
-Route::get('/delete_booking/{id}', [AdminController::class, 'deleteBooking'])->name('delete_booking');
+Route::get('/gallary',[AdminController::class,'gallary']);
+
+Route::post('/upload_gallary',[AdminController::class,'upload_gallary']);
+
+
+
+
+
