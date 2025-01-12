@@ -27,3 +27,14 @@ Route::post('/update_room/{id}',[AdminController::class,'update_room']);
 Route::get('/room_details/{id}',[HomeController::class,'room_details']);
 
 Route::post('/add_booking/{id}',[HomeController::class,'add_booking']);
+
+Route::get('/bookings',[AdminController::class,'bookings']);
+
+Route::get('/delete_booking/{id}',[AdminController::class,'delete_booking']);
+
+
+// Route to update booking status
+Route::post('/update_booking_status/{id}', [AdminController::class, 'updateStatus'])->name('update_booking_status');
+
+// Route to delete booking
+Route::get('/delete_booking/{id}', [AdminController::class, 'deleteBooking'])->name('delete_booking');

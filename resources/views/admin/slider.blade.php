@@ -17,9 +17,13 @@
                 <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Hotel Rooms</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                   <li><a href="{{url('create_room')}}">Add Rooms</a></li>
-                  <li><a href="{{url('view_room')}}">View Room</a></li>
-                 
+                  <li><a href="{{url('view_room')}}">View Room</a></li>     
            </ul>
+        </li>
+        <li>
+
+          <a href="{{url('bookings')}}"> <i class="icon-home"></i>Bookings </a>
+
         </li>
     </ul>
     </nav>

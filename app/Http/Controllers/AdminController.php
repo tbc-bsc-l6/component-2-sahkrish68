@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
+use App\Models\Booking;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -126,6 +127,34 @@ class AdminController extends Controller
     
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Room updated successfully.');
+    }
+    public function bookings()
+    {
+        $data=Booking::all();
+        return view('admin.bookings',compact('data'));
+    }
+    public function delete_booking($id)
+    {
+        $data = Booking::find($id);
+        $data->delete();
+        return redirect()->back();
+
+    }
+    // Update booking status
+    public function updateStatus(Request $request, $id)
+    {
+        // Find the booking by ID
+        $booking = Booking::find($id);
+
+        if (!$booking) {
+            return redirect()->back()->with('error', 'Booking not found.');
+        }
+
+        // Update status
+        $booking->status = $request->status;
+        $booking->save();
+
+        return redirect()->back()->with('success', 'Booking status updated successfully.');
     }
 }
 
