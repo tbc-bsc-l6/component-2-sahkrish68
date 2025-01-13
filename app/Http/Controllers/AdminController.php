@@ -22,6 +22,7 @@ class AdminController extends Controller
             if($usertype=='user')
             {
                $rooms = Room::all();
+             $gallary = Gallary::all();
                return view('home.index',compact('rooms'));  
             }
             else if($usertype=='admin')
@@ -160,6 +161,7 @@ class AdminController extends Controller
     }
     public function gallary()
     {
+        $gallary = Gallary::all();
         return view('admin.gallary');
     }
     public function upload_gallary(Request $request)
@@ -169,13 +171,32 @@ class AdminController extends Controller
         if($image)
         {
             $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request ->image->move('\gallary',$imagename);
+            $request ->image->move('mygallary',$imagename);
             $data->image=$imagename;
             $data->save();
             return redirect()->back();
         }
 
     }
+    public function delete_gallery($id)
+{
+    $image = Gallary::find($id);
+
+    if ($image) {
+        // Delete the file from the storage
+        $filePath = public_path('gallary/' . $image->image);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Delete the record from the database
+        $image->delete();
+
+        return redirect()->back()->with('success', 'Image deleted successfully.');
+    }
+
+    return redirect()->back()->with('error', 'Image not found.');
+}
 }
 
 
