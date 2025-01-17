@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Contact;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -195,9 +196,19 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Image deleted successfully.');
     }
 
-    return redirect()->back()->with('error', 'Image not found.');
+        return redirect()->back()->with('error', 'Image not found.');
+    }  
+    public function all_messages()
+    {
+        // Fetch all contact data from the database
+        $contacts = Contact::all();
+
+        // Pass the data to the Blade view
+        return view('admin.all_messages', compact('contacts'));
+    }
 }
-}
+
+
 
 
     

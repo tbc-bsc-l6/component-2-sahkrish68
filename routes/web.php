@@ -40,7 +40,14 @@ Route::post('/upload_gallary',[AdminController::class,'upload_gallary']);
 
 Route::delete('/delete_gallery/{id}', [AdminController::class, 'delete_gallery'])->name('delete_gallery');
 
+Route::get('/contact', function () {
+    return redirect('/');
+});
+
 Route::post('/contact',[HomeController::class,'contact']);
+
+Route::get('/all_messages', [AdminController::class, 'all_messages'])->name('all_messages');
+
 
 
 
