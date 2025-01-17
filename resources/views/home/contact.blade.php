@@ -1,4 +1,4 @@
-<div class="contact">
+<div class="contact" id="contact-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -17,20 +17,20 @@
                     </div>
                 @endif
  
-                <form id="request" class="main_form" action="{{ url('contact') }}" method="post">
+                <form id="request" class="main_form" action="{{ url('contact#contact-section') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Name" type="text" name="name" required>
+                            <input class="contactus" placeholder="Name" type="text" name="name" value="{{ old('name') }}" required>
                         </div>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Email" type="email" name="email" required>
+                            <input class="contactus" placeholder="Email" type="email" name="email" value="{{ old('email') }}" required>
                         </div>
                         <div class="col-md-12">
-                            <input class="contactus" placeholder="Phone Number" type="text" name="phone" required>
+                            <input class="contactus" placeholder="Phone Number" type="text" name="phone" value="{{ old('phone') }}" required>
                         </div>
                         <div class="col-md-12">
-                            <textarea class="textarea" placeholder="Message" name="message" required></textarea>
+                            <textarea class="textarea" placeholder="Message" name="message" required>{{ old('message') }}</textarea>
                         </div>
                         <div class="col-md-12">
                             <button class="send_btn" type="submit">Send</button>
@@ -54,6 +54,6 @@
                 </div>
             </div>
         </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </div>
  </div>
