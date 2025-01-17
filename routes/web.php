@@ -40,6 +40,9 @@ Route::post('/upload_gallary',[AdminController::class,'upload_gallary']);
 
 Route::delete('/delete_gallery/{id}', [AdminController::class, 'delete_gallery'])->name('delete_gallery');
 
+Route::post('/contact',[HomeController::class,'contact']);
+
+
 
 
 
