@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
@@ -28,7 +29,8 @@ Route::get('/room_details/{id}',[HomeController::class,'room_details']);
 
 Route::post('/add_booking/{id}',[HomeController::class,'add_booking']);
 
-Route::get('/bookings',[AdminController::class,'bookings']);
+Route::get('/bookings', [AdminController::class, 'bookings'])
+    ->middleware(['auth', 'admin']);
 
 Route::get('/delete_booking/{id}',[AdminController::class,'delete_booking']);
 
@@ -51,6 +53,11 @@ Route::get('/all_messages', [AdminController::class, 'all_messages'])->name('all
 Route::get('/send_mail/{id}', [AdminController::class, 'send_mail'])->name('send.mail');
 
 Route::post('mail/{id}',[AdminController::class,'mail']);
+
+Route::get('/our_rooms',[HomeController::class,'our_rooms']);
+
+
+
 
 
 

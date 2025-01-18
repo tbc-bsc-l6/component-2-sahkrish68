@@ -6,8 +6,10 @@
     <style>
         label
         {
-           display: inline-block;
-           width: 200px;
+        display: inline-block;
+        width: 120px; /* Increased label width for better readability */
+        text-align: right;
+        margin-right: 10px;
         }
         .div_deg
         {
@@ -16,7 +18,7 @@
         }
         .div_center
         {
-            text-align: center;
+            text-align:center;
             padding-top: 40px;
         }
     </style>
@@ -36,6 +38,7 @@
 
             <div class="div_center">
                 <h1 style="font-size:30px; font-weight:bold">Add Room</h1>
+               
                 <form action="{{('add_room')}}" method="post" enctype="multipart/form-data">
                      @csrf
                     <div class="div_deg">
@@ -81,6 +84,7 @@
 
 
                 </form>
+              
             </div>
 
 

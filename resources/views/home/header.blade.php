@@ -22,23 +22,19 @@
                <!-- Navbar Links -->
                <div class="collapse navbar-collapse" id="navbarContent">
                   <ul class="navbar-nav ml-auto">
-                     <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/') }}">Home</a>
+                     <li class="nav-item">
+                        <a class="nav-link" href="">Home</a>
                      </li>
-                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('about') }}">About</a>
+                     
+                     <li class="nav-item ">
+                        <a class="nav-link" href="{{url('our_rooms')}}">Our Room</a>
                      </li>
-                     <li class="nav-item {{ request()->is('room') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('room') }}">Our Room</a>
+                     <li class="nav-item ">
+                        <a class="nav-link" href="">Gallery</a>
                      </li>
-                     <li class="nav-item {{ request()->is('gallery') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('gallery') }}">Gallery</a>
-                     </li>
-                     <li class="nav-item {{ request()->is('blog') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('blog') }}">Blog</a>
-                     </li>
-                     <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
+                    
+                     <li class="nav-item ">
+                        <a class="nav-link" href="">Contact Us</a>
                      </li>
                      <!-- Authentication Links -->
                      @if (Route::has('login'))

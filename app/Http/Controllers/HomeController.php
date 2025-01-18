@@ -75,6 +75,11 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Failed to send the request.');
         }
     }
+    public function our_rooms()
+    {
+        $rooms = Room::all();
+        return view('home.our_rooms',compact('rooms'));
+    }
     
 }
 
