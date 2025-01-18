@@ -48,6 +48,9 @@
                 <th class="th_deg">Phone</th>
                 <th class="th_deg">Message</th>
                 <th class="th_deg">Date</th>
+                <th class="th_deg">Send Email</th>
+
+
               </tr>
             </thead>
             <tbody>
@@ -59,6 +62,9 @@
                 <td>{{ $contact->phone }}</td>
                 <td>{{ $contact->message }}</td>
                 <td>{{ $contact->created_at->format('d M Y, H:i') }}</td>
+                <td>
+                  <a class="btn btn-success"href="{{url('send_mail',$contact->id)}}">Send</a>
+                </td>
               </tr>
               @endforeach
             </tbody>

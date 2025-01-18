@@ -9,8 +9,12 @@ use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Contact;
 
+use App\Notifications\EmailNotification;
+
 
 use Illuminate\Support\Facades\Auth;
+use Notification;
+
 
 class AdminController extends Controller
 {
@@ -206,6 +210,40 @@ class AdminController extends Controller
         // Pass the data to the Blade view
         return view('admin.all_messages', compact('contacts'));
     }
+    public function send_mail($id)
+    {
+        // Find the contact by ID
+    $data = Contact::find($id);
+
+    // Check if the contact exists
+    if ($data) {
+        // Return the view with the data
+        return view('admin.send_mail', compact('data'));
+    }
+     else 
+    {
+        // If contact not found, redirect back with an error message
+        return redirect()->back()->with('error', 'Contact not found.');
+    }
+
+    }
+    public function mail(Request $request,$id)
+    {
+        $data = Contact::find($id);
+        $details=[
+            'greeting' => $request->greeting,
+            'body' => $request->body,
+            'action_text' => $request->action_text,
+            'action_url' => $request->action_url,
+            'endline' => $request->endline,
+
+        ];
+        Notification::send($data, new EmailNotification($details));
+
+        return redirect()->back();
+
+    }
+
 }
 
 

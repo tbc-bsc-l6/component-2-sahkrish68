@@ -48,6 +48,17 @@ Route::post('/contact',[HomeController::class,'contact']);
 
 Route::get('/all_messages', [AdminController::class, 'all_messages'])->name('all_messages');
 
+Route::get('/send_mail/{id}', [AdminController::class, 'send_mail'])->name('send.mail');
+
+Route::post('mail/{id}',[AdminController::class,'mail']);
+
+
+
+
+
+
+
+
 
 
 

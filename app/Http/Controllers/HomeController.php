@@ -74,10 +74,8 @@ class HomeController extends Controller
         } else {
             return redirect()->back()->with('error', 'Failed to send the request.');
         }
-
-
-
     }
+    
 }
 
 
