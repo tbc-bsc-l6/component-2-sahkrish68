@@ -136,10 +136,29 @@ class AdminController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Room updated successfully.');
     }
-    public function bookings()
+    public function bookings(Request $request)
     {
-        $data=Booking::all();
-        return view('admin.bookings',compact('data'));
+        // Fetch the query parameters for search
+        $status = $request->get('status');
+        $name = $request->get('name');
+
+        // Base query to fetch all bookings
+        $query = Booking::query();
+
+        // Filter by status if provided
+        if (!empty($status)) {
+            $query->where('status', $status);
+        }
+
+        // Filter by name if provided
+        if (!empty($name)) {
+            $query->where('name', 'LIKE', "%$name%");
+        }
+
+        // Execute the query and get the results
+        $data = $query->with('room')->get();
+
+        return view('admin.bookings', compact('data'));
     }
     public function delete_booking($id)
     {
