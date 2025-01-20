@@ -8,7 +8,7 @@
                   Hello,  
                   My name is Krish Bikram Sah. I am currently pursuing a BSc in Computing at The British College.  
                   I am in Level 6, Semester 1, and this is my Advanced Web Development project
-                  On Hotel Management System.  
+                  On console.log("About Me section loaded");Hotel Management System.  
               </p>
                 <a class="read_more" href="Javascript:void(0)"> Read More</a>
              </div>
